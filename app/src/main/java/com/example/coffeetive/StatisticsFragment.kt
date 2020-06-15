@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.example.coffeetive.databinding.FragmentStatisticsBinding
+import com.example.coffeetive.databinding.StatisticsFragmentBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -17,7 +17,7 @@ class StatisticsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentStatisticsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistics, container, false)
+        val binding: StatisticsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.statistics_fragment, container, false)
         return binding.root
     }
 
