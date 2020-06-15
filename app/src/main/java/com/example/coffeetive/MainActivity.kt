@@ -48,14 +48,17 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.nav_aboutFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AboutFragment()).commit()
+            R.id.nav_homeFragment -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+            }
+            R.id.nav_coffeeRegistrationFragment -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CoffeeRegistrationFragment()).commit()
             }
             R.id.nav_statisticsFragment -> {
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, StatisticsFragment()).commit()
             }
-            R.id.nav_coffeeRegistrationFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CoffeeRegistrationFragment()).commit()
+            R.id.nav_aboutFragment -> {
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AboutFragment()).commit()
             }
 
         }
