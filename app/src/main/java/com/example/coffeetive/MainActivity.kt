@@ -29,11 +29,13 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         drawer = binding.drawerLayout
 
         setSupportActionBar(binding.toolbar)
-
+        navView.setNavigationItemSelectedListener(this)
+        
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-        navView.setNavigationItemSelectedListener(this)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
+
     }
 
 
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
             }
 
         }
+        drawer.closeDrawer(GravityCompat.START)
         return true
     }
 
