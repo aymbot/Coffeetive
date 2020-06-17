@@ -12,60 +12,34 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffeetive.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var drawer: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        drawer = binding.drawerLayout
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        setSupportActionBar(toolbar)
 
-        setSupportActionBar(binding.toolbar)
-        navView.setNavigationItemSelectedListener(this)
+        drawerLayout = binding.drawerLayout
+
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+        NavigationUI.setupWithNavController(binding.navView, navController)
         
-        val toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
-
     }
 
-
-
-    override fun onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.nav_homeFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, HomeFragment()).commit()
-            }
-            R.id.nav_coffeeRegistrationFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, CoffeeRegistrationFragment()).commit()
-            }
-            R.id.nav_statisticsFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, StatisticsFragment()).commit()
-            }
-            R.id.nav_aboutFragment -> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, AboutFragment()).commit()
-            }
-
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
 

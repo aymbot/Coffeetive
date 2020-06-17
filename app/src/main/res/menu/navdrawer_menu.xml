@@ -2,20 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_homeFragment"
+            android:id="@+id/homeFragment"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
-            android:id="@+id/nav_coffeeRegistrationFragment"
+            android:id="@+id/coffeeRegistrationFragment"
             android:icon="@drawable/ic_local_cafe_black_24dp"
-            android:title="Coffee Registration" />
+            android:title="@string/coffee_registration" />
         <item
-            android:id="@+id/nav_statisticsFragment"
+            android:id="@+id/statisticsFragment"
             android:icon="@drawable/ic_show_chart_black_24dp"
             android:title="@string/string_statistics" />
-        <item
-            android:id="@+id/nav_aboutFragment"
-            android:icon="@drawable/ic_info_black_24dp"
-            android:title="@string/string_about" />
     </group>
 </menu>
