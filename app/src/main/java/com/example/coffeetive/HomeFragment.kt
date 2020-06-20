@@ -1,14 +1,16 @@
 package com.example.coffeetive
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffeetive.databinding.HomeFragmentBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.home_fragment.*
 
-class HomeFragment : Fragment() {
+
+class HomeFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: HomeFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
@@ -26,5 +28,6 @@ class HomeFragment : Fragment() {
             requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
+
 }
 

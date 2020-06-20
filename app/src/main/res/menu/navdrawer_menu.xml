@@ -6,9 +6,9 @@
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/home" />
         <item
-            android:id="@+id/coffeeRegistrationFragment"
-            android:icon="@drawable/ic_local_cafe_black_24dp"
-            android:title="@string/coffee_registration" />
+            android:id="@+id/moodFragment"
+            android:icon="@drawable/ic_mood_black_24dp"
+            android:title="Mood" />
         <item
             android:id="@+id/statisticsFragment"
             android:icon="@drawable/ic_show_chart_black_24dp"
