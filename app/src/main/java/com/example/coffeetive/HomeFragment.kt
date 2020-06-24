@@ -3,19 +3,55 @@ package com.example.coffeetive
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffeetive.databinding.HomeFragmentBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.bottom_sheet_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
 
-class HomeFragment : BottomSheetDialogFragment() {
+class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: HomeFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
         setHasOptionsMenu(true)
+
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
+
+        floatingActionButton.setOnClickListener {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+
+            override fun onStateChanged(view: View, state: Int) {
+                when (state) {
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        floatingActionButton.visibility = View.GONE
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        floatingActionButton.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onSlide(view: View, p1: Float) {
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -28,6 +64,8 @@ class HomeFragment : BottomSheetDialogFragment() {
             requireView().findNavController())
                 || super.onOptionsItemSelected(item)
     }
+
+
 
 }
 

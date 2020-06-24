@@ -10,15 +10,11 @@ import com.example.coffeetive.databinding.BottomSheetFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: BottomSheetFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
-        setHasOptionsMenu(true)
+        val binding: BottomSheetFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_fragment, container, false)
         return binding.root
     }
-
 
 }
