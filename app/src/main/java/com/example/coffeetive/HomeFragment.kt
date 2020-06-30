@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.coffeetive.viewModelFactory.CoffeeViewModel
+import com.example.coffeetive.viewModelFactory.CoffeeViewModelFactory
+import com.example.coffeetive.database.CoffeetiveDatabase
 import com.example.coffeetive.databinding.HomeFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.bottom_sheet_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -19,6 +22,13 @@ class HomeFragment : Fragment() {
         val binding: HomeFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
         setHasOptionsMenu(true)
 
+        val application = requireNotNull(this.activity).application
+        val coffeedataSource = CoffeetiveDatabase.getInstance(application).coffeeDAO
+        val mooddataSource = CoffeetiveDatabase.getInstance(application).moodDAO
+        val viewModelFactory = CoffeeViewModelFactory(coffeedataSource, application)
+        val coffeeViewModel = ViewModelProvider(this, viewModelFactory).get(CoffeeViewModel::class.java)
+        binding.coffeeViewModel = coffeeViewModel
+        binding.lifecycleOwner = this //Enable binding to observe liveData updates
 
         return binding.root
     }
