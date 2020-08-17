@@ -49,16 +49,8 @@ class HomeFragment : Fragment() {
             BottomSheetBehavior.BottomSheetCallback() {
 
             override fun onStateChanged(view: View, state: Int) {
-                when (state) {
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        floatingActionButton.visibility = View.GONE
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        floatingActionButton.visibility = View.VISIBLE
-                    }
-                }
-            }
 
+            }
             override fun onSlide(view: View, p1: Float) {
             }
         })

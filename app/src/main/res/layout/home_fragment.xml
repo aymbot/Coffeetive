@@ -26,18 +26,21 @@
             </TextView>
         </ScrollView>
 
+        <include layout="@layout/bottom_sheet_fragment" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
             android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_add_black_24dp"
+            app:layout_anchor="@+id/bottomSheetFragment"
+            app:layout_anchorGravity="top|center"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
-        <include layout="@layout/bottom_sheet_fragment" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
