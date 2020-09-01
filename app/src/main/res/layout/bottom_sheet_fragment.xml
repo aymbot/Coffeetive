@@ -2,13 +2,19 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".BottomSheetFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="coffeeViewModel"
+            type="com.example.coffeetive.viewModelFactory.CoffeeViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomSheetFragment"
         android:layout_width="match_parent"
         android:layout_height="167dp"
+        tools:context=".BottomSheetFragment"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="16dp"

@@ -7,33 +7,82 @@ import android.text.Spanned
 import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.coffeetive.database.Coffee
 import com.example.coffeetive.database.CoffeeDAO
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
 
 class CoffeeViewModel(val database: CoffeeDAO,
                       application: Application
 ) : AndroidViewModel(application) {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private var coffee = MutableLiveData<Coffee?>()
     private val coffees = database.getAllCoffee()
+
+    init {
+        //deleteAllData()
+        Log.i("test", "initDATABASEProc")
+        initializeCoffee()
+    }
+
+    private fun initializeCoffee(){
+        uiScope.launch {
+            insert(Coffee(2))
+            insert(Coffee(1))
+            getCoffeeFromDatabase()
+        }
+    }
+
+    private suspend fun getCoffeeFromDatabase(): LiveData<List<Coffee>> {
+        return withContext(Dispatchers.IO){
+            var coffee = database.getAllCoffee()
+
+            coffee
+        }
+    }
+
+    private suspend fun insert (coffee: Coffee){
+        withContext(Dispatchers.IO){
+            database.insert(coffee)
+        }
+    }
+
     val coffeeString = Transformations.map(coffees){coffees ->
         formatCoffee(coffees)
     }
 
     fun createCoffee(coffe: Coffee) {
         uiScope.launch {
-            val coffe = coffe
             withContext(Dispatchers.IO){
-                val result = database.insert(coffe)
+                val result = insert(coffe)
                 Log.i("CoffeeViewmodel", result.toString())
             }
         }
     }
 
+    fun onSetConsumedCoffee(coffeesize: Int){
+        Log.i("test","hier")
+        uiScope.launch {
+            withContext(Dispatchers.IO){
+                val coffee = Coffee(coffeesize)
+                insert(coffee)
+            }
+        }
+    }
+
+    private var _showSnackbarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackbarEvent
+    fun doneShowingSnackbar() {
+        _showSnackbarEvent.value = false
+    }
+
     // this function deletes all users inside the user_table
-    fun deleteAllUsers(){
+    fun deleteAllData(){
         uiScope.launch {
             withContext(Dispatchers.IO){
                 database.clear()
@@ -44,6 +93,16 @@ class CoffeeViewModel(val database: CoffeeDAO,
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel() //cancel all coroutines onCleared()
+    }
+
+    fun convertNumericCoffeSizetoString(coffesize: Int) : String{
+        var coffeeSizeString = "--No Size Recorded"
+        when (coffesize){
+            1 -> coffeeSizeString = "Small"
+            2 -> coffeeSizeString = "Medium"
+            3 -> coffeeSizeString = "Large"
+        }
+        return coffeeSizeString
     }
 
     /*
@@ -57,9 +116,11 @@ class CoffeeViewModel(val database: CoffeeDAO,
             append("Coffee List: <br>")
             coffees.forEach{
                 append("Coffeesize: ")
-                append(it.coffeesize.toString() + "<br>")
-                append("Time: ")
-                /*append(it.time.toString() + "<br><br>")*/
+                append(convertNumericCoffeSizetoString(it.coffeesize) + "<br>")
+                append("Date: ")
+                append(
+                    SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
+                        .format(it.time).toString() + "<br><br>")
             }
         }
 
