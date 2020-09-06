@@ -10,7 +10,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="About Fragment" />
+            android:text="Coffeetive \n\nVersion 1.0 Alpha \nTrial Version \nCreated by Aymeric and Jakob"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
