@@ -50,4 +50,29 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.i("test", "onCreate BottomSheet")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("test", "onStart BottomSheet")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("test", "onResume BottomSheet")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("test", "onStop BottomSheet")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("test", "onDestroy BottomSheet")
+    }
+
 }
