@@ -6,12 +6,12 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "mood_table")
-class Mood (
+data class Mood (
     @ColumnInfo(name = "mood")
-    var mood: Int = -1/*,
+    var mood: Int = -1,
 
     @ColumnInfo(name = "time")
-    val time: Long = System.currentTimeMillis()*/
+    val time: Long = System.currentTimeMillis()
 ) {
     @PrimaryKey(autoGenerate = true)
     var moodid: Long = 0L

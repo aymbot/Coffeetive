@@ -30,15 +30,31 @@ class HomeFragment : Fragment() {
         binding.coffeeViewModel = coffeeViewModel
         binding.lifecycleOwner = this //Enable binding to observe liveData updates
 
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
+    /*
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)*/
 
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
+        val bottomfragment = BottomSheetFragment()
+
+        /*floatingActionButton.setOnClickListener {
+            if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }*/
         floatingActionButton.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
+
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             } else {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED

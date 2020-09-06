@@ -31,8 +31,9 @@ class CoffeeViewModel(val database: CoffeeDAO,
 
     private fun initializeCoffee(){
         uiScope.launch {
-            insert(Coffee(2))
+            insert(Coffee(3))
             insert(Coffee(1))
+            createCoffee(Coffee(2))
             getCoffeeFromDatabase()
         }
     }

@@ -2,6 +2,7 @@ package com.example.coffeetive
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,12 +34,19 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val coffeedataSource = CoffeetiveDatabase.getInstance(application).coffeeDAO
         val viewModelFactory = CoffeeViewModelFactory(coffeedataSource, application)
         val coffeeViewModel = ViewModelProviders.of(this, viewModelFactory).get(CoffeeViewModel::class.java)
-
         binding.coffeeViewModel = coffeeViewModel
         binding.setLifecycleOwner (this)
+        Log.i("test", "bottomsheet fragment")
+        //methode createCoffee funktioniert in CoffeeViewModel init Proc
+        //Vermutung: Variable coffeeViewMdoel wird nicht initialisiert
+        //da setOnClickListener auch nicht funktioniert, wird das gesamte Fragment
+        //vielleicht nicht inflated oder so
+        //coffeeViewModel.createCoffee(Coffee(3))
 
+        val button3 = binding.button3
 
-        binding.button3.setOnClickListener {
+        button3.setOnClickListener {
+            Log.i("test", "button 3")
             coffeeViewModel.createCoffee(Coffee(3))
         }
         // binding.button4.setOnClickListener(){

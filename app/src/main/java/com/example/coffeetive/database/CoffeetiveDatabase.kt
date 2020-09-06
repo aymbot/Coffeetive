@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Coffee::class, Mood::class], version = 2, exportSchema = false)
+@Database(entities = [Coffee::class, Mood::class], version = 1, exportSchema = false)
 abstract class CoffeetiveDatabase : RoomDatabase() {
     abstract val coffeeDAO: CoffeeDAO
     abstract val moodDAO: MoodDAO
