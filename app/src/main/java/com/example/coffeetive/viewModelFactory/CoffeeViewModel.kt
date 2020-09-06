@@ -31,14 +31,11 @@ class CoffeeViewModel(val database: CoffeeDAO,
 
     private fun initializeCoffee(){
         uiScope.launch {
-            insert(Coffee(3))
-            insert(Coffee(1))
-            createCoffee(Coffee(2))
             getCoffeeFromDatabase()
         }
     }
 
-    private suspend fun getCoffeeFromDatabase(): LiveData<List<Coffee>> {
+    suspend fun getCoffeeFromDatabase(): LiveData<List<Coffee>> {
         return withContext(Dispatchers.IO){
             var coffee = database.getAllCoffee()
 
@@ -56,14 +53,21 @@ class CoffeeViewModel(val database: CoffeeDAO,
         formatCoffee(coffees)
     }
 
-    fun createCoffee(coffe: Coffee) {
+    fun createCoffee(coffe: Int) {
         uiScope.launch {
-            withContext(Dispatchers.IO){
-                val result = insert(coffe)
-                Log.i("CoffeeViewmodel", result.toString())
-            }
+            Log.i("test", "Function: Create coffee")
+            insert(Coffee(coffe))
         }
     }
+    /*
+    suspend fun getCoffeeArray(): ArrayList<Coffee>{
+        uiScope.launch {
+                return withContext(Dispatchers.IO) {
+                    var coffeearr database.getCoffeeArray()
+                    coffeearr
+                }
+        }
+    }*/
 
     fun onSetConsumedCoffee(coffeesize: Int){
         Log.i("test","hier")

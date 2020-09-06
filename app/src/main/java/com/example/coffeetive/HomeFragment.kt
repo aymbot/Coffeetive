@@ -2,6 +2,7 @@ package com.example.coffeetive
 
 import android.os.Bundle
 import android.view.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,8 @@ import com.example.coffeetive.viewModelFactory.CoffeeViewModelFactory
 import com.example.coffeetive.database.CoffeetiveDatabase
 import com.example.coffeetive.databinding.HomeFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 
@@ -30,7 +33,6 @@ class HomeFragment : Fragment() {
         binding.coffeeViewModel = coffeeViewModel
         binding.lifecycleOwner = this //Enable binding to observe liveData updates
 
-
         return binding.root
     }
 
@@ -40,11 +42,8 @@ class HomeFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
-
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
-        val bottomfragment = BottomSheetFragment()
-
-        /*floatingActionButton.setOnClickListener {
+            /*floatingActionButton.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
 
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED

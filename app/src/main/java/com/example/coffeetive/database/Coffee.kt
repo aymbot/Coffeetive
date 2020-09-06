@@ -15,8 +15,4 @@ data class Coffee (
 ){
     @PrimaryKey(autoGenerate = true)
     var coffeeid: Long = 0L
-
-    fun setCoffeeSize(size: Int){
-        coffeesize = size
-    }
 }

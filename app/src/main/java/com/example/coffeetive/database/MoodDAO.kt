@@ -21,5 +21,5 @@ interface MoodDAO {
     fun clear()
 
     @Query("SELECT * FROM mood_table ORDER BY moodid DESC")
-    fun getAllCoffee(): LiveData<List<Mood>>
+    fun getAllMood(): LiveData<List<Mood>>
 }

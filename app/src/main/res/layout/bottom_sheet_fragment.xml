@@ -2,7 +2,8 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BottomSheetFragment">
 
     <data>
         <variable
@@ -14,7 +15,6 @@
         android:id="@+id/bottomSheetFragment"
         android:layout_width="match_parent"
         android:layout_height="167dp"
-        tools:context=".BottomSheetFragment"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="16dp"
@@ -24,17 +24,17 @@
 
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button_coffee_L"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintStart_toEndOf="@+id/button_coffee_M"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_coffee_M"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium"
@@ -44,15 +44,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_coffee_S"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Small"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintEnd_toStartOf="@+id/button_coffee_M"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> coffeeViewModel.createCoffee(2)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

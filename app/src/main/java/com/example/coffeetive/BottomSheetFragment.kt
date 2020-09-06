@@ -6,9 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import com.example.coffeetive.database.Coffee
 import com.example.coffeetive.database.CoffeetiveDatabase
 import com.example.coffeetive.databinding.BottomSheetFragmentBinding
 import com.example.coffeetive.viewModelFactory.CoffeeViewModel
@@ -20,9 +20,8 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: BottomSheetFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.bottom_sheet_fragment, container, false)
-
+        Log.i("test", "bottomsheet fragment")
 /*
-
         val coffeedataSource = CoffeetiveDatabase.getInstance(application).coffeeDAO
         //val mooddataSource = CoffeetiveDatabase.getInstance(application).moodDAO
         val viewModelFactory = CoffeeViewModelFactory(coffeedataSource, application)
@@ -36,22 +35,18 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         val coffeeViewModel = ViewModelProviders.of(this, viewModelFactory).get(CoffeeViewModel::class.java)
         binding.coffeeViewModel = coffeeViewModel
         binding.setLifecycleOwner (this)
-        Log.i("test", "bottomsheet fragment")
+
         //methode createCoffee funktioniert in CoffeeViewModel init Proc
         //Vermutung: Variable coffeeViewMdoel wird nicht initialisiert
         //da setOnClickListener auch nicht funktioniert, wird das gesamte Fragment
         //vielleicht nicht inflated oder so
         //coffeeViewModel.createCoffee(Coffee(3))
 
-        val button3 = binding.button3
-
-        button3.setOnClickListener {
+        binding.buttonCoffeeL.setOnClickListener {
             Log.i("test", "button 3")
-            coffeeViewModel.createCoffee(Coffee(3))
+            coffeeViewModel.createCoffee(3)
         }
-        // binding.button4.setOnClickListener(){
-        //     Log.i("test", "Button3")
-        // }
+
         return binding.root
     }
 
