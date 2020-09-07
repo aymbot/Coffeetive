@@ -50,10 +50,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
 
-    }
     /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)*/
@@ -65,11 +62,12 @@ class HomeFragment : Fragment() {
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
         floatingActionButton.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
-               // if (bottomSheetFragmenti == null) {
-                    /*bottomSheetFragmenti = BottomSheetFragment()
-                    bottomSheetFragmenti?.show(childFragmentManager, bottomSheetFragmenti?.tag)*/
+               //if (bottomSheetFragmenti == null) {
+                   bottomSheetFragmenti = BottomSheetFragment()
+                   bottomSheetFragmenti?.show(childFragmentManager, bottomSheetFragmenti?.tag)
 
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+                //bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
             } else {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             }

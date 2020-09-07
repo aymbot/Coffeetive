@@ -40,7 +40,9 @@ class CoffeeViewModel(val database: CoffeeDAO,
 
     fun getAllCoffee(): ArrayList<Coffee> {
         uiScope.launch {
-            allcoffeearray = getCoffeeArray().toCollection(ArrayList())
+            val abc = getCoffeeArray()
+            abc.forEach { System.out.print(it) }
+            allcoffeearray = abc.toCollection(ArrayList())
         }
         allcoffeearray.add(Coffee(60))
         allcoffeearray.add(Coffee(70))

@@ -95,6 +95,7 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
     private fun setData(count: Int, range: Float) {
 
         val values = ArrayList<Entry>()
+        val values2 = ArrayList<Entry>()
 
         /*for (i in 0 until count) {
 
@@ -114,11 +115,12 @@ class StatisticsFragment : Fragment(), OnChartValueSelectedListener {
         val moodarray = moodViewModel.getAllMood()
         val coffeearray = coffeeViewModel.getAllCoffee()
         if(coffeearray.isEmpty()){
-            Log.i("test", "empty Coffeeee")
+            Log.i("test", "empty Coffee")
         }else{
-            coffeearray.forEach(){
-                values.add(Entry(it.coffeesize.toFloat(), 3f))
-            }
+            Log.i("testCoffeeee", coffeearray.get(1).toString())
+            /*coffeearray.forEach(){
+                values.add(Entry(it.coffeesize.toFloat(), 40f))
+            }*/
         }
 
         coffeearray.forEach(System.out::println)

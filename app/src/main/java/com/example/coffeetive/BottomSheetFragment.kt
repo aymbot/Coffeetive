@@ -46,6 +46,14 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         //vielleicht nicht inflated oder so
         //coffeeViewModel.createCoffee(Coffee(3))
 
+        binding.buttonCoffeeS.setOnClickListener {
+            Log.i("test", "button 1")
+            coffeeViewModel.createCoffee(1)
+        }
+        binding.buttonCoffeeM.setOnClickListener {
+            Log.i("test", "button 2")
+            coffeeViewModel.createCoffee(2)
+        }
         binding.buttonCoffeeL.setOnClickListener {
             Log.i("test", "button 3")
             coffeeViewModel.createCoffee(3)
