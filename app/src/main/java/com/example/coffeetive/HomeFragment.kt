@@ -62,7 +62,8 @@ class HomeFragment : Fragment() {
         val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
         floatingActionButton.setOnClickListener {
             if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_COLLAPSED) {
-               //if (bottomSheetFragmenti == null) {
+                //Currently this behavior breaks intended behavior of FAB
+                //if (bottomSheetFragmenti == null)
                    bottomSheetFragmenti = BottomSheetFragment()
                    bottomSheetFragmenti?.show(childFragmentManager, bottomSheetFragmenti?.tag)
 
