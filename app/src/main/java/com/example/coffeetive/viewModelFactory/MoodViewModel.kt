@@ -17,7 +17,7 @@ class MoodViewModel(
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val moods = database.getAllMood()
-    private var allmoodarray =  ArrayList<Mood>()
+    private val allmoodarray =  ArrayList<Mood>()
 
     init {
         Log.i("test", "Mood Constructor")
@@ -34,11 +34,13 @@ class MoodViewModel(
 
     fun getAllMood(): ArrayList<Mood> {
         uiScope.launch {
-            allmoodarray = getMoodArray().toCollection(ArrayList())
+            val abc = getMoodArray()
+            abc.forEach { allmoodarray.add(it) }
         }
-        allmoodarray.add(Mood(60))
-        allmoodarray.add(Mood(70))
-        allmoodarray.add(Mood(80))
+        //Thread.sleep(2000L)
+        allmoodarray.add(Mood(3))
+        allmoodarray.add(Mood(2))
+        allmoodarray.add(Mood(1))
         return allmoodarray
     }
 
