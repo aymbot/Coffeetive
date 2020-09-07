@@ -22,7 +22,7 @@ interface CoffeeDAO {
 
     @Query("SELECT * FROM coffee_table ORDER BY coffeeid DESC")
     fun getAllCoffee(): LiveData<List<Coffee>>
-/*
+
     @Query("SELECT * FROM coffee_table ORDER BY coffeeid DESC")
-    fun getCoffeeArray(): ArrayList<Coffee>*/
+    fun getCoffeeArray(): Array<Coffee>
 }

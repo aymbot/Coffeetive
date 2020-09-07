@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffeetive.database.CoffeetiveDatabase
 import com.example.coffeetive.databinding.ActivityMainBinding
+import com.example.coffeetive.databinding.BottomSheetFragmentBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*

@@ -22,11 +22,30 @@ class CoffeeViewModel(val database: CoffeeDAO,
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var coffee = MutableLiveData<Coffee?>()
     private val coffees = database.getAllCoffee()
+    private var allcoffeearray =  ArrayList<Coffee>()
 
     init {
         //deleteAllData()
         Log.i("test", "initDATABASEProc")
         initializeCoffee()
+    }
+
+    suspend fun getCoffeeArray(): Array<Coffee> {
+        return withContext(Dispatchers.IO) {
+            var allmood = database.getCoffeeArray()
+
+            allmood
+        }
+    }
+
+    fun getAllCoffee(): ArrayList<Coffee> {
+        uiScope.launch {
+            allcoffeearray = getCoffeeArray().toCollection(ArrayList())
+        }
+        allcoffeearray.add(Coffee(60))
+        allcoffeearray.add(Coffee(70))
+        allcoffeearray.add(Coffee(80))
+        return allcoffeearray
     }
 
     private fun initializeCoffee(){
